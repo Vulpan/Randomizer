@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbna17ilp40aa"]
+
+[ext_resource type="Script" path="res://Randomizer.gd" id="1_tjutn"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_tjutn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PathTE" type="TextEdit" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(1000, 32)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 112.0
+grow_horizontal = 2
+text = "Enter Path"
+
+[node name="RandomizeButton" type="Button" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(1000, 48)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -196.0
+offset_right = -16.0
+offset_bottom = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Randomize"
+
+[node name="ConsoleTE" type="TextEdit" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 196.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_smooth = true
+
+[connection signal="pressed" from="CanvasLayer/Control/RandomizeButton" to="." method="_on_randomize_button_pressed"]
