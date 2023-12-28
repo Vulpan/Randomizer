@@ -44,11 +44,10 @@ func _rename_files() -> void:
 						else:
 							none = false
 							
-				
-				
+				var string_number = _normalize_number(number, length)
 				var regex_name = regex.sub(file_name, "")
-				var new_name = str(number) + ". " + regex_name
-				dir.rename_absolute(dir.get_current_dir()+ "/" + file_name, dir.get_current_dir()+ "/" + new_name)
+				var new_name = string_number + ". " + regex_name
+				DirAccess.rename_absolute(dir.get_current_dir()+ "/" + file_name, dir.get_current_dir()+ "/" + new_name)
 				
 				_print_file_change(file_name, new_name)
 				
@@ -58,14 +57,41 @@ func _rename_files() -> void:
 	else:
 		print("An error occurred when trying to access the path.")
 
+func _normalize_number(number: int, length: int) -> String:
+	var digits_number_in_number: int = _digits_numbers_in_int(number)
+	var digits_number_in_length: int = _digits_numbers_in_int(length)
+	var string_number: String = ""
+	
+	var i : int = digits_number_in_number
+	while i < digits_number_in_length:
+		string_number += "0"
+		i += 1
+	
+	string_number += str(number)
+	
+	return string_number
+
+func _digits_numbers_in_int(number: int) -> int:
+	var digit_number: int = 0
+	
+	if number <= 0:
+		return 1
+	
+	while number > 0:
+		digit_number += 1
+		number /= 10
+		number = floor(number)
+	
+	return digit_number
+
 func _on_randomize_button_pressed() -> void:
 	_rename_files()
 
-func _print_in_console(str: String) -> void:
+func _print_in_console(s: String) -> void:
 	if console_text_edit.text.is_empty():
-		console_text_edit.text = "(" + str(line_in_console) + ")" + str
+		console_text_edit.text = "(" + str(line_in_console) + ")" + s
 	else:
-		console_text_edit.text = console_text_edit.text + "\n" + "(" + str(line_in_console) + ") " + str
+		console_text_edit.text = console_text_edit.text + "\n" + "(" + str(line_in_console) + ") " + s
 	
 	line_in_console += 1
 

@@ -25,7 +25,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 112.0
 grow_horizontal = 2
-text = "Enter Path"
+placeholder_text = "Enter Path"
 
 [node name="RandomizeButton" type="Button" parent="CanvasLayer/Control"]
 custom_minimum_size = Vector2(1000, 48)
